@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/*style.css*/
+@import url("/common.css");
+
+/* 로그인 */
+#wrap_login { width: 100%; height: 100%; min-height: 800px; background-color: #88abcc; }
+.loginbox { position: absolute; top: 50%; left: 50%; width: 300px; height: 500px; margin: -250px 0 0 -150px; }
+.loginbox .login_logo { text-align: center; }
+.loginbox h2 { padding: 75px 0 40px; font-size: 28px; text-align: center; color: #fff; }
+.loginbox li { margin-bottom: 10px; }
+.loginbox li:last-child { overflow: hidden; padding-top: 10px; }
+.loginbox .input_txt_login { width: 100%; height: 40px; padding: 0 15px;   line-height: 40px; font-size: 18px; border: 0; color: #fff; background-color: #a4cef5; }
+.loginbox .input_txt_login::-webkit-input-placeholder { color: #fff; }
+.loginbox .input_txt_login::-moz-placeholder { color: #fff; }
+.loginbox .input_txt_login::-ms-input-placeholder { color: #fff; }
+.loginbox .btn_login { width: 100%; height: 40px; text-align: center; color: #88abcc; font-size: 18px;  background-color: #fff; }
+.loginbox .chkform { float: left; width: 50%;  }
+.loginbox .chkform label { color: #fff; line-height: 21px; font-size: 14px; }
+.loginbox .input_chk_login { background-image: url(../img/bul_chk_login.png); }
