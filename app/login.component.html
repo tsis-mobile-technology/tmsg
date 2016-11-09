@@ -14,16 +14,16 @@
     <ul class="form-group">
         <li>
             <label>
-                <input formControlName="loginid" class="input_txt_login" placeholder="loginid" required/>
+                <input formControlName="loginid" class="input_txt_login" placeholder="로그인 아이디를 입력하세요!" required/>
             </label>
         </li>
         <li>
             <label>
-                <input type="password" formControlName="password" class="input_txt_login" placeholder="password" required/>
+                <input type="password" formControlName="password" class="input_txt_login" placeholder="패스워드를 입력하세요!" required/>
             </label>
         </li>
-        <li>
-            <button type="submit" class="btn btn_login" [disabled]="!form.vaild">로그인</button>
+        <li><!--[disabled]="!myForm.vaild" -->
+            <button type="submit" class="btn btn_login">로그인</button>
         </li>
         <li>
             <div class="chkform">
@@ -37,6 +37,7 @@
         </li>
     </ul>
     </form>
+    <button (click)="gotoMain()">View Main</button>
 </div>
 
 </div><!-- //wrap -->

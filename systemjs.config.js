@@ -30,6 +30,7 @@
     },
     // packages tells the System loader how to load when no filename and/or no extension
     // main: './main.js',
+    // main: './tmsg.js',
     packages: {
       app: {
         main: './tmsg.js',

@@ -48,6 +48,13 @@ export class CounselorService {
 	}
 
 	create(idx: number, loginid: string, status: number, name: string, password: string, issaveid: boolean, isautologin: boolean ): Promise<Counselor> {
+		console.log("idx        :" + idx        );
+		console.log("loginid    :" + loginid    );
+		console.log("status     :" + status     );
+		console.log("name       :" + name       );
+		console.log("password   :" + password   );
+		console.log("issaveid   :" + issaveid   );
+		console.log("isautologin:" + isautologin);
 		return this.http
 			.post(this.counselorsUrl, JSON.stringify({idx: idx, loginid: loginid, status: status, name: name, password: password, issaveid: issaveid, isautologin: isautologin}), {headers: this.headers})
 			.toPromise()

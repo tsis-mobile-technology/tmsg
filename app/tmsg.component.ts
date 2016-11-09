@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
 	moduleId: module.id,
     selector: 'my-app',
-	template:`<my-login>Loading...</my-login>`,
+	template:`<router-outlet></router-outlet>`,
 	styleUrls: [ 'tmsg.component.css' ]
 })
 

@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 	public myForm: FormGroup; // model driven form
 	public submitted: boolean;
 	public events: any[] = [];
+	public myIdx: number;	// login counselor's idx
 
 	constructor(
 		private router: Router,
@@ -32,8 +33,7 @@ export class LoginComponent implements OnInit {
 		// 추후 세션 관리 기능 추가시 사용
 		// 1. 아이디 저장
 		// 2. 로그인 상태 유지 등...
-		//this.counselorService.getCounselorsSlowly().then(counselors => this.counselors = counselors);
-		console.log("Login.component:" + "getCounselors() call");
+		this.counselorService.getCounselorSlowly().then(counselors => this.counselors = counselors);
 	}
 
 	ngOnInit(): void {
@@ -60,22 +60,20 @@ export class LoginComponent implements OnInit {
 		issaveid = this.myForm.controls["issaveid"].value;
 		isautologin = this.myForm.controls["isautologin"].value;
 
+		this.onLogin();
 		this.add(loginid, password, issaveid, isautologin);
-	}
-
-	onSelect(counselor: Counselor): void {
-		this.selectedCounselor = counselor;
+		this.gotoMain();
 	}
 
 	gotoMain(): void {
-		this.router.navigate(['/main', this.selectedCounselor.idx]);
+		this.router.navigate(['/main', this.myIdx]);
 	}
 
 	add(loginid: string, password: string, issaveid: boolean, isautologin: boolean): void {
 		let idx: number;
 		let status: number;
 		let name: string;
-		idx = 1; /* Counselor index value */
+		idx = this.myIdx; /* Counselor index value : 추후 서버에서 받아 오기 */
 		status = 4; /* 4: 휴식 */
 		name = loginid + "_" + idx;
 
@@ -84,28 +82,21 @@ export class LoginComponent implements OnInit {
 			.then(counselor => {
 				this.counselors.push(counselor);
 				this.selectedCounselor = null;
-		});
-	}
-
-	delete(counselor: Counselor): void {
-		this.counselorService
-			.delete(counselor.idx)
-			.then(() => {
-				this.counselors = this.counselors.filter(h => h !== counselor);
-				if (this.selectedCounselor === counselor) { this.selectedCounselor = null; }
 			});
 	}
 
 	onLogin(): void {
 		// 추후 Database 를 통해 처리 시 HTTP 를 통해 기본 정보를 가져 온다 
-		// 1. 상담사 관리 등....
+		// 1. 상담사 패스워드 확인 등....
 		// 2. 로그인 이력 처리 등....
-
+		this.myIdx = 1;
 	}
 
-	onLogout(): void {
-		// 추후 Database를 통해 처리 시 HTTP를 통해 아웃 처리
-		// 1. 로그아웃 처리 등....
-		// 2. 상담 이력 저
+	onAuthLogin(): void {
+		// 로그인 상태 유지 클릭시 
+	}
+
+	onIsSaveId(): void {
+		// 로그인 아이디 저장 시 
 	}
 }

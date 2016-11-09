@@ -1,35 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location }               from '@angular/common';
 
-import { Counselor } from './counselor';
-import { CounselorService } from './counselor.service';
+import { Counselor } 			from './counselor';
+import { CounselorService }		from './counselor.service';
 
 @Component({
 	moduleId: module.id,
     selector: 'my-main',
-    template:`<my-main>Loading...</my-main>`
+	templateUrl: 'main.component.html',
+	styleUrls: [ 'main.component.css' ]
 })
 
 export class MainComponent implements OnInit {
 
 	counselors: Counselor[];
-	selectedCounselor: Counselor;
+	counselor: Counselor;
 
 	constructor(
-		private router: Router,
-		private counselorService: CounselorService
+		private route: ActivatedRoute,
+		private counselorService: CounselorService,
+		private location: Location
 	) {}
 
-	getCounselors(): void {
-		//this.counselorService.getCounselors().then(counselors => this.counselors = counselors);
-		// 추후 세션 관리 기능 추가시 사용
-		// 1. 아이디 저장
-		// 2. 로그인 상태 유지 등...
-		//this.counselorService.getCounselorsSlowly().then(counselors => this.counselors = counselors);
-		console.log("Login.component:" + "getCounselors() call");
+	ngOnInit(): void {
+		//this.getCounselors();
+		this.route.params.forEach((params: Params) => {
+			let idx = +params['idx'];
+			this.counselorService.getCounselor(idx)
+				.then(counselor => this.counselor = counselor);
+		});
 	}
 
-	ngOnInit(): void {
-		this.getCounselors();
+	delete(counselor: Counselor): void {
+		this.counselorService
+			.delete(counselor.idx)
+			.then(() => {
+				this.counselors = this.counselors.filter(h => h !== counselor);
+			});
+	}
+
+	gotoLogin(): void {
+		this.router.navigate(['/login']);
+	}
+
+	onLogout(): void {
+		// 추후 Database를 통해 처리 시 HTTP를 통해 아웃 처리
+		// 1. 로그아웃 처리 등....
+		// 2. 상담 이력 저
+		delete(this.counselor);
+		gotoLogin();
 	}
 }

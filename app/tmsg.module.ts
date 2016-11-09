@@ -12,7 +12,7 @@ import { TmsgRoutingModule }     from './tmsg-routing.module';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { InMemoryDataTmsgService }  from './in-memory-data-tmsg.service';
 
 import './rxjs-extensions';
 
@@ -21,7 +21,7 @@ import './rxjs-extensions';
     BrowserModule,
     FormsModule, ReactiveFormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    InMemoryWebApiModule.forRoot(InMemoryDataTmsgService),
     TmsgRoutingModule
   ],
   declarations: [
