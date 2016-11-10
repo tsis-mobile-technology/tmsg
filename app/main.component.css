@@ -21,7 +21,7 @@
     border: 0;
     color: #fff200;
     background-size:30px;
-    background: url(../img/bul_sel2.png) right center no-repeat #394651;
+    background: url(/img/bul_sel2.png) right center no-repeat #394651;
     background-size: 24px 7px;
 }
 #side_pannel .all_info { text-align: center; }

@@ -18,6 +18,7 @@ export class MainComponent implements OnInit {
 	counselor: Counselor;
 
 	constructor(
+		private router: Router,
 		private route: ActivatedRoute,
 		private counselorService: CounselorService,
 		private location: Location
@@ -48,7 +49,7 @@ export class MainComponent implements OnInit {
 		// 추후 Database를 통해 처리 시 HTTP를 통해 아웃 처리
 		// 1. 로그아웃 처리 등....
 		// 2. 상담 이력 저
-		delete(this.counselor);
-		gotoLogin();
+		this.delete(this.counselor);
+		this.gotoLogin();
 	}
 }
